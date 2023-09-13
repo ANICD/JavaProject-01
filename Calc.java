@@ -7,6 +7,7 @@ String s1 = new String("Java-01");
 String s2 = "Java-02";
 
 System.out.println(s1.charAt(0));
+System.out.println(s1.codePointAt(0));
 //System.out.println(s1.replace(3, 0));
 System.out.println(s2.charAt(2));
 
