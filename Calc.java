@@ -1,16 +1,18 @@
-import javax.lang.model.util.Elements.Origin;
+import java.util.Scanner;
 
 public class Calc {
-public static void main (String[] args){
-//String s1 = "Java-01";   
-String s1 = new String("Java-01");
-String s2 = "Java-02";
+    public static void main(String[] args) {
+        try (Scanner in = new Scanner(System.in)) {
+            String inputData = "";
+            int lInputString = 0;
+            inputData = in.nextLine(); // Ввод данных
+            lInputString = inputData.length(); // Длина введенной строки
+            // Обработка введенной строки
+            System.out.println(inputData);
+            System.out.println(lInputString);
+        } catch (Exception a) {
+            a.printStackTrace();
+        }
 
-System.out.println(s1.charAt(0));
-System.out.println(s1.codePointAt(0));
-System.out.println(s1.codePointAt(3));
-//System.out.println(s1.replace(3, 0));
-System.out.println(s2.charAt(2));
-
-}
+    }
 }
