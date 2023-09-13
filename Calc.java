@@ -8,8 +8,8 @@ public class Calc {
             inputData = in.nextLine(); // Ввод данных
             lInputString = inputData.length(); // Длина введенной строки
             // Обработка введенной строки
-            System.out.println(inputData);
-            System.out.println(lInputString);
+            //System.out.println(inputData);
+            //System.out.println(lInputString);
         } catch (Exception a) {
             a.printStackTrace();
         }
