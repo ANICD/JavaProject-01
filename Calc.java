@@ -14,13 +14,16 @@ public class Calc {
             String inputData = "";
             inputData = in.nextLine();
             int l = inputData.length();
-            // Обработка римских
-            // чисел=============================================================================
+            // Обработка римских чисел=============================================================================
             if (inputData.contains("I") || inputData.contains("V") || inputData.contains("X")) {
                 System.out.println("Работаем с римскими числами!");
-                char[] arr = s.toChartArray;
+                int start = 0;
+                char [] inputChar = new char[l - start];
+                inputData.getChars(start, l, inputChar, 0);
+                System.out.println(inputChar);
                 
-                int arabian;
+                
+               /* int arabian;
                 Map<Character, Integer> rMap = new HashMap<>();
                 rMap.put('I', 1);
                 rMap.put('V', 5);
@@ -31,9 +34,7 @@ public class Calc {
                 rMap.put('M', 1000);
                 for (int n = l - 1; n >= 0; n--) {
                     arabian = rMap.get(n)
-
-
-                }
+                }*/
             } else {
                 // Обработка арабских чисел============================================================================
                 int arg01, arg02, res;
