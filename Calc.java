@@ -1,6 +1,4 @@
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,50 +11,64 @@ public class Calc {
         try (Scanner in = new Scanner(System.in)) {
             String inputData = "";
             inputData = in.nextLine();
-            int l = inputData.length();
-            // Обработка римских чисел=============================================================================
+            inputData = inputData.toUpperCase();
+            // Обработка римских чисел
+            // =============================================================================
             if (inputData.contains("I") || inputData.contains("V") || inputData.contains("X")) {
                 System.out.println("Работаем с римскими числами!");
-                int start = 0;
-                char [] inputChar = new char[l - start];
-                inputData.getChars(start, l, inputChar, 0);
-                System.out.println(inputChar);
-                
-                
-               /* int arabian;
-                Map<Character, Integer> rMap = new HashMap<>();
-                rMap.put('I', 1);
-                rMap.put('V', 5);
-                rMap.put('X', 10);
-                rMap.put('L', 50);
-                rMap.put('C', 100);
-                rMap.put('D', 500);
-                rMap.put('M', 1000);
-                for (int n = l - 1; n >= 0; n--) {
-                    arabian = rMap.get(n)
-                }*/
-            } else {
-                // Обработка арабских чисел============================================================================
                 int arg01, arg02, res;
-                List<String> matchesList = new ArrayList<String>();
-                Pattern p01 = Pattern.compile("\\d+");
+                Map<Character, Integer> romanMap = new TreeMap<>();
+                romanMap.put('I', 1);
+                romanMap.put('V', 5);
+                romanMap.put('X', 10);
+                romanMap.put('L', 50);
+                romanMap.put('C', 100);
+                romanMap.put('D', 500);
+                romanMap.put('M', 1000);
+                // int start = 0;
+                // char[] romandList = new char[len - start];
+                // inputData.getChars(start, len, romandList, 0);
+                List<String> romansList = new ArrayList<String>();
+                Pattern p01 = Pattern.compile("[IVX]+", Pattern.CASE_INSENSITIVE);
                 Matcher m01 = p01.matcher(inputData);
                 while (m01.find()) {
-                    matchesList.add(m01.group());
+                    romansList.add(m01.group());
                 }
-                arg01 = Integer.parseInt(matchesList.get(0));
-                arg02 = Integer.parseInt(matchesList.get(1));
+                int lenRomanList = romansList.size();
+                if (lenRomanList != 2)
+                    throw new Exception("Небходимо ввести два аргумента!");
+                char[] arg01CharArray = romansList.get(0).toCharArray();
+                char[] arg02CharArray = romansList.get(1).toCharArray();
+                for (int n = arg01CharArray.length - 1; n >= 0; n--) {
+
+                    int rightSymbol = romanMap.get(arg01CharArray[n]);
+                    int leftSymbol = romanMap.get(arg01CharArray[n - 1]);
+                    System.out.println(rightSymbol + " " + leftSymbol);
+
+                }
+            } else {
                 // Обработка арабских чисел
-                if ((arg01 > 10) && (arg02 > 10)) {
-                    System.out.println("Неправильно введены оба числа! Числа должны быть от 1 до 10");
-                    return;
-                } else if (arg01 > 10) {
-                    System.out.println("Неправильно введено первое число! Число должно быть от 1 до 10");
-                    return;
-                } else if (arg02 > 10) {
-                    System.out.println("Неправильно введено второе число! Число должно быть от 1 до 10");
-                    return;
+                // ============================================================================
+
+                int arg01, arg02, res;
+                List<String> arabiansList = new ArrayList<String>();
+                Pattern p02 = Pattern.compile("\\d+");
+                Matcher m02 = p02.matcher(inputData);
+                while (m02.find()) {
+                    arabiansList.add(m02.group());
                 }
+                int lenArabList = arabiansList.size();
+                if (lenArabList != 2)
+                    throw new Exception("Небходимо ввести два аргумента!");
+                arg01 = Integer.parseInt(arabiansList.get(0));
+                arg02 = Integer.parseInt(arabiansList.get(1));
+                // Обработка арабских чисел
+                if ((arg01 > 10) && (arg02 > 10))
+                    throw new Exception("Неправильно введены оба числа! Числа должны быть от 1 до 10");
+                if (arg01 > 10)
+                    throw new Exception("Неправильно введено первое число! Число должно быть от 1 до 10");
+                if (arg02 > 10)
+                    throw new Exception("Неправильно введено второе число! Число должно быть от 1 до 10");
                 System.out.println("Работаем с арабскими числами!");
                 if (inputData.contains("+")) { // Делаем сложение
                     res = arg01 + arg02;
