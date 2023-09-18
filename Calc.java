@@ -16,7 +16,7 @@ public class Calc {
             // =============================================================================
             if (inputData.contains("I") || inputData.contains("V") || inputData.contains("X")) {
                 System.out.println("Работаем с римскими числами!");
-                int arg01, arg02, res;
+                int arg01 = 0, arg02 = 0, res = 0;
                 Map<Character, Integer> romanMap = new TreeMap<>();
                 romanMap.put('I', 1);
                 romanMap.put('V', 5);
@@ -25,9 +25,6 @@ public class Calc {
                 romanMap.put('C', 100);
                 romanMap.put('D', 500);
                 romanMap.put('M', 1000);
-                // int start = 0;
-                // char[] romandList = new char[len - start];
-                // inputData.getChars(start, len, romandList, 0);
                 List<String> romansList = new ArrayList<String>();
                 Pattern p01 = Pattern.compile("[IVX]+", Pattern.CASE_INSENSITIVE);
                 Matcher m01 = p01.matcher(inputData);
@@ -38,13 +35,36 @@ public class Calc {
                 if (lenRomanList != 2)
                     throw new Exception("Небходимо ввести два аргумента!");
                 char[] arg01CharArray = romansList.get(0).toCharArray();
+                int charArr01Len = arg01CharArray.length - 1;
+                if (charArr01Len == 1)
+                    arg01 = arg01CharArray[charArr01Len + 1];
+                else {
+                    for (int n = charArr01Len - 1; n >= 0; n--) {
+                        int leftSymbol = romanMap.get(arg01CharArray[n]);
+                        int rightSymbol = romanMap.get(arg01CharArray[n + 1]);
+                        if (rightSymbol >= leftSymbol)
+                            arg01 = rightSymbol - leftSymbol;
+                        else
+                            arg01 = rightSymbol + leftSymbol;
+                        rightSymbol = arg01;
+                    }
+                    System.out.println(arg01);
+                }
                 char[] arg02CharArray = romansList.get(1).toCharArray();
-                for (int n = arg01CharArray.length - 1; n >= 0; n--) {
-
-                    int rightSymbol = romanMap.get(arg01CharArray[n]);
-                    int leftSymbol = romanMap.get(arg01CharArray[n - 1]);
-                    System.out.println(rightSymbol + " " + leftSymbol);
-
+                int charArr02Len = arg02CharArray.length - 1;
+                if (charArr02Len == 1)
+                    arg02 = arg02CharArray[charArr02Len + 1];
+                else {
+                    for (int n = charArr02Len - 1; n >= 0; n--) {
+                        int leftSymbol = romanMap.get(arg02CharArray[n]);
+                        int rightSymbol = romanMap.get(arg02CharArray[n + 1]);
+                        if (rightSymbol >= leftSymbol)
+                            arg02 = rightSymbol - leftSymbol;
+                        else
+                            arg02 = rightSymbol + leftSymbol;
+                        rightSymbol = arg02;
+                    }
+                    System.out.println(arg02);
                 }
             } else {
                 // Обработка арабских чисел
