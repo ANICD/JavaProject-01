@@ -34,36 +34,42 @@ public class Calc {
                 int lenRomanList = romansList.size();
                 if (lenRomanList != 2)
                     throw new Exception("Небходимо ввести два аргумента!");
+                // ==============================================================
                 char[] arg01CharArray = romansList.get(0).toCharArray();
                 int charArr01Len = arg01CharArray.length - 1;
+                int res01 = arg01CharArray[arg01CharArray.length];
                 if (charArr01Len == 1)
-                    arg01 = arg01CharArray[charArr01Len + 1];
+                    arg01 = arg01CharArray[arg01CharArray.length];
                 else {
                     for (int n = charArr01Len - 1; n >= 0; n--) {
                         int leftSymbol = romanMap.get(arg01CharArray[n]);
-                        int rightSymbol = romanMap.get(arg01CharArray[n + 1]);
-                        if (rightSymbol >= leftSymbol)
-                            arg01 = rightSymbol - leftSymbol;
+                        // int rightSymbol = romanMap.get(arg01CharArray[n + 1]);
+                        if (leftSymbol <= res01)
+                            res01 -= leftSymbol;
                         else
-                            arg01 = rightSymbol + leftSymbol;
-                        rightSymbol = arg01;
+                            res01 += leftSymbol;
+                        leftSymbol = res01;
                     }
+                    arg01 = res01;
                     System.out.println(arg01);
                 }
+                // ================================================================
                 char[] arg02CharArray = romansList.get(1).toCharArray();
                 int charArr02Len = arg02CharArray.length - 1;
+                int res02 = arg01CharArray[arg02CharArray.length];
                 if (charArr02Len == 1)
                     arg02 = arg02CharArray[charArr02Len + 1];
                 else {
                     for (int n = charArr02Len - 1; n >= 0; n--) {
                         int leftSymbol = romanMap.get(arg02CharArray[n]);
-                        int rightSymbol = romanMap.get(arg02CharArray[n + 1]);
-                        if (rightSymbol >= leftSymbol)
-                            arg02 = rightSymbol - leftSymbol;
+                        // int rightSymbol = romanMap.get(arg02CharArray[n + 1]);
+                        if (leftSymbol <= res02)
+                            res02 -= leftSymbol;
                         else
-                            arg02 = rightSymbol + leftSymbol;
-                        rightSymbol = arg02;
+                            res02 += leftSymbol;
+                        leftSymbol = res02;
                     }
+                    arg02 = res02;
                     System.out.println(arg02);
                 }
             } else {
