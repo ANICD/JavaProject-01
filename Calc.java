@@ -30,11 +30,12 @@ public class Calc {
                     throw new Exception("Небходимо ввести два аргумента!");
                 // Получаем первое число из списка romansList и помещаем его в символьный массив
                 char[] arg01CharArray = romansList.get(0).toCharArray();
-                int arg01 = numConverter(arg01CharArray); // Применяем к массиву функцию преобразования в арабское число
+                arg01 = numConverter(arg01CharArray); // Применяем к массиву функцию преобразования в арабское число
                 // Получаем второе число из списка romansList и помещаем его в символьный массив
                 char[] arg02CharArray = romansList.get(1).toCharArray();
-                int arg02 = numConverter(arg01CharArray); // Применяем к массиву функцию преобразования в арабское число
+                arg02 = numConverter(arg01CharArray); // Применяем к массиву функцию преобразования в арабское число
                 // Дальше можно работать как с арабскими числами
+                System.out.println(arg01 + " " + arg02);
 
             } else {
                 // Обработка арабских чисел
@@ -81,27 +82,8 @@ public class Calc {
         romanMap.put('M', 1000);
         if (inputArray.length == 1)
             res = valueOfEndSymbol;
-            else {
-for (int i = inputArray.length - 1; i >= 0; i--) {
-int cur = romanMap.get(inputArray[i].toCharArray);
-
-}
-
-
-            }
-
-     
-
-
-
-      
-    
-
-    
-
-    
+            else {}
         return res;
-
     }
 
     public static int calculator(int arg1, int arg2, String input) {
