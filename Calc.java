@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -8,11 +9,13 @@ import java.util.regex.Pattern;
 
 public class Calc {
     public static void main(String[] args) {
+
         try (Scanner in = new Scanner(System.in)) {
             String inputData = "";
             inputData = in.nextLine();
             inputData = inputData.toUpperCase();
             int arg01, arg02, res;
+
             // Обработка римских чисел
             if (inputData.contains("I") || inputData.contains("V") || inputData.contains("X")) {
                 System.out.println("Работаем с римскими числами!");
@@ -29,13 +32,23 @@ public class Calc {
                 if (romansList.size() != 2)
                     throw new Exception("Небходимо ввести два аргумента!");
                 // Получаем первое число из списка romansList и помещаем его в символьный массив
-              //  char[] arg01CharArray = romansList.get(0).toCharArray();
-               // arg01 = numConverter(arg01CharArray); // Применяем к массиву функцию преобразования в арабское число
+                // char[] arg01CharArray = romansList.get(0).toCharArray();
+                // arg01 = numConverter(arg01CharArray); // Применяем к массиву функцию
+                arg01 = numConverter(romansList, 0);
+                arg02 = numConverter(romansList, 1);
+                // преобразования в арабское число
                 // Получаем второе число из списка romansList и помещаем его в символьный массив
-             //   char[] arg02CharArray = romansList.get(1).toCharArray();
-              // arg02 = numConverter(arg01CharArray); // Применяем к массиву функцию преобразования в арабское число
+                // char[] arg02CharArray = romansList.get(1).toCharArray();
+                // arg02 = numConverter(arg01CharArray); // Применяем к массиву функцию
+                // char[] output01 = numConverter(romansList, 0);
+                // char[] output02 = numConverter(romansList, 1);
+                //System.out.println(romansList);
+                //System.out.println(romansList.get(0) + " " + romansList.get(1));
+                // преобразования в арабское число
                 // Дальше можно работать как с арабскими числами
-                System.out.println(arg01 + " " + arg02);
+                // System.out.println(output01[0] + output01[1] + " " + output02[0] +
+                // output02[1]);
+                // System.out.println(arg01CharArray[0] + " " + arg01CharArray[1]);
 
             } else {
                 // Обработка арабских чисел
@@ -70,8 +83,10 @@ public class Calc {
     // ФУНКЦИЯ КОНВЕРТАЦИИ РИМСКИХ ЧИСЕЛ В АРАБСКИЕ
     public static int numConverter(List<String> inputString, int index) {
         int res = 0;
-       char[] fromStrinIg = inputString.get(index).toCharArray();
-       
+        char[] inputStringArray = inputString.get(index).toCharArray();
+        System.out.println(inputStringArray);
+        System.out.println("Длина массива: " + inputStringArray.length);
+        // char valueOfEndSymbol = fromStrinIg[fromStrinIg.length - 1];
         // Создаем МАР
         Map<Character, Integer> romanMap = new TreeMap<>();
         romanMap.put('I', 1);
@@ -81,9 +96,10 @@ public class Calc {
         romanMap.put('C', 100);
         romanMap.put('D', 500);
         romanMap.put('M', 1000);
-        if (fromStrinIg.length == 1)
-            res = valueOfEndSymbol;
-            else {}
+        if (inputString.size() == 1) {
+            res = 1;
+        }
+        // else {
         return res;
     }
 
