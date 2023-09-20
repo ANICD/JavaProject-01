@@ -1,9 +1,10 @@
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.TreeMap;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -36,6 +37,7 @@ public class Calc {
                 // arg01 = numConverter(arg01CharArray); // Применяем к массиву функцию
                 arg01 = numConverter(romansList, 0);
                 arg02 = numConverter(romansList, 1);
+                System.out.println(arg01 + " " + arg02);
                 // преобразования в арабское число
                 // Получаем второе число из списка romansList и помещаем его в символьный массив
                 // char[] arg02CharArray = romansList.get(1).toCharArray();
@@ -84,11 +86,11 @@ public class Calc {
     public static int numConverter(List<String> inputString, int index) {
         int res = 0;
         char[] inputStringArray = inputString.get(index).toCharArray();
-        System.out.println(inputStringArray);
-        System.out.println("Длина массива: " + inputStringArray.length);
+        //System.out.println(inputStringArray);
+        //System.out.println("Длина массива: " + inputStringArray.length);
         // char valueOfEndSymbol = fromStrinIg[fromStrinIg.length - 1];
         // Создаем МАР
-        Map<Character, Integer> romanMap = new TreeMap<>();
+        HashMap<Character, Integer> romanMap = new HashMap<>();{
         romanMap.put('I', 1);
         romanMap.put('V', 5);
         romanMap.put('X', 10);
@@ -96,10 +98,14 @@ public class Calc {
         romanMap.put('C', 100);
         romanMap.put('D', 500);
         romanMap.put('M', 1000);
-        if (inputString.size() == 1) {
-            res = 1;
         }
-        // else {
+        if (inputString.size() == 1) {
+            char valueOfEndSymbol = inputStringArray[inputStringArray.length-1];
+            res = romanMap.get(valueOfEndSymbol);
+        }
+         else {
+res = 2;
+         }
         return res;
     }
 
