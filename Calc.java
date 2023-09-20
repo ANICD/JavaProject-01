@@ -29,11 +29,11 @@ public class Calc {
                 if (romansList.size() != 2)
                     throw new Exception("Небходимо ввести два аргумента!");
                 // Получаем первое число из списка romansList и помещаем его в символьный массив
-                char[] arg01CharArray = romansList.get(0).toCharArray();
-                arg01 = numConverter(arg01CharArray); // Применяем к массиву функцию преобразования в арабское число
+              //  char[] arg01CharArray = romansList.get(0).toCharArray();
+               // arg01 = numConverter(arg01CharArray); // Применяем к массиву функцию преобразования в арабское число
                 // Получаем второе число из списка romansList и помещаем его в символьный массив
-                char[] arg02CharArray = romansList.get(1).toCharArray();
-                arg02 = numConverter(arg01CharArray); // Применяем к массиву функцию преобразования в арабское число
+             //   char[] arg02CharArray = romansList.get(1).toCharArray();
+              // arg02 = numConverter(arg01CharArray); // Применяем к массиву функцию преобразования в арабское число
                 // Дальше можно работать как с арабскими числами
                 System.out.println(arg01 + " " + arg02);
 
@@ -68,9 +68,10 @@ public class Calc {
     }
 
     // ФУНКЦИЯ КОНВЕРТАЦИИ РИМСКИХ ЧИСЕЛ В АРАБСКИЕ
-    public static int numConverter(char[] inputArray) {
+    public static int numConverter(List<String> inputString, int index) {
         int res = 0;
-        int valueOfEndSymbol = inputArray[inputArray.length - 1];
+       char[] fromStrinIg = inputString.get(index).toCharArray();
+       
         // Создаем МАР
         Map<Character, Integer> romanMap = new TreeMap<>();
         romanMap.put('I', 1);
@@ -80,7 +81,7 @@ public class Calc {
         romanMap.put('C', 100);
         romanMap.put('D', 500);
         romanMap.put('M', 1000);
-        if (inputArray.length == 1)
+        if (fromStrinIg.length == 1)
             res = valueOfEndSymbol;
             else {}
         return res;
