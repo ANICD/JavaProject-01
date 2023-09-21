@@ -66,7 +66,7 @@ public class Calc {
     }
 
     // ФУНКЦИЯ КОНВЕРТАЦИИ РИМСКИХ ЧИСЕЛ В АРАБСКИЕ
-    public static int RomansConverter(List<String> inputString, int index) {
+    private static int RomansConverter(List<String> inputString, int index) {
         char[] inputStringArray = inputString.get(index).toCharArray(); // Преобразование List в массив
         // Создаем МАР
         HashMap<Character, Integer> romanMap = new HashMap<Character, Integer>();
@@ -97,7 +97,7 @@ public class Calc {
     }
 
     // ФУНКЦИЯ КОНВЕРТАЦИИ АРАБСКИХ ЧИСЕЛ В РИМСКИЕ
-    public static String ArabConverter(int arabianResult) {
+    private static String ArabConverter(int arabianResult) {
         String stringResult = "";
         // Создаем МАР
         LinkedHashMap<String, Integer> arabMap = new LinkedHashMap<String, Integer>();
@@ -124,7 +124,7 @@ public class Calc {
         return stringResult;
     }
 
-    public static String repeat(String s, int n) {
+    private static String repeat(String s, int n) {
         if (s == null) {
             return null;
         }
@@ -135,7 +135,7 @@ public class Calc {
         return sb.toString();
     }
 
-    public static int CalcRomansNumber(int arg1, int arg2, String input, List<String> inputList) {
+    private static int CalcRomansNumber(int arg1, int arg2, String input, List<String> inputList) {
         int res = 0;
         if (input.contains("+")) { // Делаем сложение
             res = arg1 + arg2;
@@ -157,7 +157,7 @@ public class Calc {
         return res;
     }
 
-    public static void CalcArabNumber(int arg1, int arg2, String input) {
+    private static void CalcArabNumber(int arg1, int arg2, String input) {
         int res = 0;
         if (input.contains("+")) { // Делаем сложение
             res = arg1 + arg2;
