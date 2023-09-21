@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -40,7 +42,7 @@ public class Calc {
                 if (arg02 > 10)
                     throw new Exception("Неправильно введено второе число! Число должно быть от I до X");
                 CalcRomansNumber(arg01, arg02, inputData, romansList); // Применяем процедуру вычисления
-                // System.out.println(arg01 + " " + arg02);
+
             } else {
                 // Обработка арабских чисел
                 System.out.println("Работаем с арабскими числами!");
@@ -98,28 +100,68 @@ public class Calc {
         return res;
     }
 
-    public static void CalcRomansNumber(int arg1, int arg2, String input, List<String> inputList) {
+    // ФУНКЦИЯ КОНВЕРТАЦИИ АРАБСКИХ ЧИСЕЛ В РИМСКИЕ
+    public static String ArabConverter(int arabianResult) {
+        String stringResult = "";
+        // Создаем МАР
+        LinkedHashMap<String, Integer> arabMap = new LinkedHashMap<String, Integer>();
+        {
+            arabMap.put("M", 1000);
+            arabMap.put("CM", 900);
+            arabMap.put("D", 500);
+            arabMap.put("CD", 400);
+            arabMap.put("C", 100);
+            arabMap.put("XC", 90);
+            arabMap.put("L", 50);
+            arabMap.put("XL", 40);
+            arabMap.put("X", 10);
+            arabMap.put("IX", 9);
+            arabMap.put("V", 5);
+            arabMap.put("IV", 4);
+            arabMap.put("I", 1);
+        }
+        for (Map.Entry<String, Integer> entry : arabMap.entrySet()) {
+            int matches = arabianResult / entry.getValue();
+            stringResult += repeat(entry.getKey(), matches);
+            arabianResult = arabianResult % entry.getValue();
+        }
+        return stringResult;
+    }
+
+    public static String repeat(String s, int n) {
+        if (s == null) {
+            return null;
+        }
+        final StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            sb.append(s);
+        }
+        return sb.toString();
+    }
+
+    public static int CalcRomansNumber(int arg1, int arg2, String input, List<String> inputList) {
         int res = 0;
         if (input.contains("+")) { // Делаем сложение
             res = arg1 + arg2;
-            System.out.println("Сумма чисел " + inputList.get(0) + " и " + inputList.get(1) + " равна " + res);
+            System.out.println("Сумма чисел " + inputList.get(0) + " и " + inputList.get(1) + " равна " + ArabConverter(res));
         } else if (input.contains("-")) { // Делаем вычитание
             res = arg1 - arg2;
-            System.out.println("Разность чисел " + inputList.get(0) + " и " + inputList.get(1) + " равна " + res);
+            System.out.println("Разность чисел " + inputList.get(0) + " и " + inputList.get(1) + " равна " + ArabConverter(res));
         } else if (input.contains("*")) { // Делаем умножение
             res = arg1 * arg2;
-            System.out.println("Произведение чисел " + inputList.get(0) + " и " + inputList.get(1) + " равна " + res);
+            System.out.println("Произведение чисел " + inputList.get(0) + " и " + inputList.get(1) + " равна " + ArabConverter(res));
         } else if (input.contains("/")) { // Делаем деление
             res = arg1 / arg2;
-            System.out.println("Частное чисел " + inputList.get(0) + " и " + inputList.get(1) + " равно " + res);
+            System.out.println("Частное чисел " + inputList.get(0) + " и " + inputList.get(1) + " равно " + ArabConverter(res));
         }
+        return res;
     }
 
     public static void CalcArabNumber(int arg1, int arg2, String input) {
         int res = 0;
         if (input.contains("+")) { // Делаем сложение
             res = arg1 + arg2;
-            System.out.println("Сумма чисел " + input + " и " + arg2 + " равна " + res);
+            System.out.println("Сумма чисел " + arg1 + "и " + arg2 + "равна " + res);
         } else if (input.contains("-")) { // Делаем вычитание
             res = arg1 - arg2;
             System.out.println("Разность чисел " + arg1 + " и " + arg2 + " равна " + res);
@@ -131,4 +173,5 @@ public class Calc {
             System.out.println("Частное чисел " + arg1 + " и " + arg2 + " равно " + res);
         }
     }
+
 }
