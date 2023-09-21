@@ -8,31 +8,27 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Calc {
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
-
         try (Scanner in = new Scanner(System.in)) {
+            System.out.print("Введите выражение (арабские или римские числа): ");
             String inputData = "";
             inputData = in.nextLine();
             inputData = inputData.toUpperCase();
             int arg01, arg02;
-            // if ((inputData.contains("I") || inputData.contains("V") ||
-            // inputData.contains("X") && inputList.contains(regex:"[1-10]")))
-            // throw new Exception("Оба числа должны быть или римские, или арабские");
             // Обработка римских чисел
             if (inputData.contains("I") || inputData.contains("V") || inputData.contains("X")) {
-                System.out.println("Работаем с римскими числами!");
-                // Выделяем римские числа из входного потока и помещаем их в List с именем
-                // romanslist(строковый тип)
                 List<String> romansList = new ArrayList<String>();
                 Pattern p01 = Pattern.compile("[IVX]+", Pattern.CASE_INSENSITIVE);
                 Matcher m01 = p01.matcher(inputData);
                 while (m01.find()) {
                     romansList.add(m01.group());
                 }
-                // Определяем исключение на количество введенных чисел
-                // (их должно быть не более двух)
                 if (romansList.size() != 2)
-                    throw new Exception("Небходимо ввести два аргумента!");
+                    throw new Exception("Неверное выражение!");
+                System.out.println("Работаем с римскими числами!");
                 arg01 = RomansConverter(romansList, 0);// Ищем первое число с помощью конвертера
                 arg02 = RomansConverter(romansList, 1);// Ищем второе число с помощью конвертера
                 if ((arg01 > 10) && (arg02 > 10))
@@ -45,7 +41,6 @@ public class Calc {
 
             } else {
                 // Обработка арабских чисел
-                System.out.println("Работаем с арабскими числами!");
                 List<String> arabiansList = new ArrayList<String>();
                 Pattern p02 = Pattern.compile("\\d+");
                 Matcher m02 = p02.matcher(inputData);
@@ -53,7 +48,8 @@ public class Calc {
                     arabiansList.add(m02.group());
                 }
                 if (arabiansList.size() != 2)
-                    throw new Exception("Небходимо ввести два аргумента!");
+                    throw new Exception("Неверное выражение!");
+                System.out.println("Работаем с арабскими числами!");
                 arg01 = Integer.parseInt(arabiansList.get(0));
                 arg02 = Integer.parseInt(arabiansList.get(1));
                 if ((arg01 > 10) && (arg02 > 10))
@@ -143,16 +139,20 @@ public class Calc {
         int res = 0;
         if (input.contains("+")) { // Делаем сложение
             res = arg1 + arg2;
-            System.out.println("Сумма чисел " + inputList.get(0) + " и " + inputList.get(1) + " равна " + ArabConverter(res));
+            System.out.println(
+                    "Сумма чисел " + inputList.get(0) + " и " + inputList.get(1) + " равна " + ArabConverter(res));
         } else if (input.contains("-")) { // Делаем вычитание
             res = arg1 - arg2;
-            System.out.println("Разность чисел " + inputList.get(0) + " и " + inputList.get(1) + " равна " + ArabConverter(res));
+            System.out.println(
+                    "Разность чисел " + inputList.get(0) + " и " + inputList.get(1) + " равна " + ArabConverter(res));
         } else if (input.contains("*")) { // Делаем умножение
             res = arg1 * arg2;
-            System.out.println("Произведение чисел " + inputList.get(0) + " и " + inputList.get(1) + " равна " + ArabConverter(res));
+            System.out.println("Произведение чисел " + inputList.get(0) + " и " + inputList.get(1) + " равно "
+                    + ArabConverter(res));
         } else if (input.contains("/")) { // Делаем деление
             res = arg1 / arg2;
-            System.out.println("Частное чисел " + inputList.get(0) + " и " + inputList.get(1) + " равно " + ArabConverter(res));
+            System.out.println(
+                    "Частное чисел " + inputList.get(0) + " и " + inputList.get(1) + " равно " + ArabConverter(res));
         }
         return res;
     }
@@ -161,13 +161,13 @@ public class Calc {
         int res = 0;
         if (input.contains("+")) { // Делаем сложение
             res = arg1 + arg2;
-            System.out.println("Сумма чисел " + arg1 + "и " + arg2 + "равна " + res);
+            System.out.println("Сумма чисел " + arg1 + " и " + arg2 + " равна " + res);
         } else if (input.contains("-")) { // Делаем вычитание
             res = arg1 - arg2;
             System.out.println("Разность чисел " + arg1 + " и " + arg2 + " равна " + res);
         } else if (input.contains("*")) { // Делаем умножение
             res = arg1 * arg2;
-            System.out.println("Произведение чисел " + arg1 + " и " + arg2 + " равна " + res);
+            System.out.println("Произведение чисел " + arg1 + " и " + arg2 + " равно " + res);
         } else if (input.contains("/")) { // Делаем деление
             res = arg1 / arg2;
             System.out.println("Частное чисел " + arg1 + " и " + arg2 + " равно " + res);
